@@ -34,6 +34,9 @@ const fakeData: ItemType[] = [...Array(12)].map((_, index) => ({
     image: images[index % images.length],
 }))
 
+const PADDING = 16;
+const WIDTH = 400;
+
 export default function App() {
 
     const renderItem: ListRenderItem<ItemType> = ({item}) => {
@@ -57,6 +60,9 @@ export default function App() {
             <FlatList
                 data={fakeData}
                 renderItem={renderItem}
+                numColumns={2}
+                contentContainerStyle={{paddingHorizontal: PADDING}}
+                columnWrapperStyle={{justifyContent: 'space-between'}}
             />
         </View>
     );
@@ -65,11 +71,17 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#cecece',
         alignItems: 'center',
         justifyContent: 'center',
     },
     itemIphone: {
-        backgroundColor: 'fff',
-    }
+        backgroundColor: '#fff',
+        width: (WIDTH - PADDING * 2) / 2 - 8,
+        marginVertical: 6,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.4)',
+        borderRadius: 5,
+        paddingTop: 12,
+    },
 });
